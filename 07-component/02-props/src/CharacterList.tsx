@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Header, Icon, Item } from 'semantic-ui-react';
 
 export interface Character {
@@ -13,31 +13,29 @@ interface CharacterListProps {
   characters: Character[];
 }
 
-class CharacterList extends Component<CharacterListProps> {
-  render() {
-    const { school, characters } = this.props;
+const CharacterList: React.FC<CharacterListProps> = props => {
+  const { school, characters } = props;
 
-    return (
-      <>
-        <Header as="h2">{school}</Header>
-        <Item.Group>
-          {characters.map(c => (
-            <Item>
-              <Icon name="user circle" size="huge" />
-              <Item.Content>
-                <Item.Header>{c.name}</Item.Header>
-                <Item.Meta>{c.age}歳</Item.Meta>
-                <Item.Meta>
-                  {c.height ? c.height : '???'}
-                  cm
-                </Item.Meta>
-              </Item.Content>
-            </Item>
-          ))}
-        </Item.Group>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header as="h2">{school}</Header>
+      <Item.Group>
+        {characters.map(c => (
+          <Item>
+            <Icon name="user circle" size="huge" />
+            <Item.Content>
+              <Item.Header>{c.name}</Item.Header>
+              <Item.Meta>{c.age}歳</Item.Meta>
+              <Item.Meta>
+                {c.height ? c.height : '???'}
+                cm
+              </Item.Meta>
+            </Item.Content>
+          </Item>
+        ))}
+      </Item.Group>
+    </>
+  );
+};
 
 export default CharacterList;
